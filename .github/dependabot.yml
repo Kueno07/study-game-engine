@@ -1,0 +1,9 @@
+version: 2
+updates:
+  # The repo has no package dependencies; only the actions in the workflows move.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 14
