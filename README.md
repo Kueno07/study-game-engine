@@ -23,6 +23,13 @@ npm test      # 4 test files
 npm run dev   # http://127.0.0.1:8787, phrase "local-dev-phrase" in the x-app-token header
 ```
 
+## Where to look first
+
+- `src/store.js`: the environment label check, in one file.
+- `dev/test-store.mjs`: the rules as tests, including "a preview never writes to a prod database".
+- `dev/test-auth.mjs`: two claims at the same moment. The first version of the suite did not cover it.
+- `.github/workflows/`: the tests and a secret scan over the full history run on every push.
+
 ## The DEV and PROD guard
 
 A Vercel preview deployment shares the project's environment variables. If the Redis variables are set for every
