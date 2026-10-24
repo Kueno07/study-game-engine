@@ -11,7 +11,16 @@
 export const DAYS = [0, 1, 3, 7, 14, 30, 60, 120, 240, 480, 960, 1920, 3650];
 export const FIRM_BOX = 4;
 
+function isDay(day) {
+  if (typeof day !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(day)) return false;
+  const date = new Date(`${day}T12:00:00Z`);
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === day;
+}
+
 export const addDays = (day, n) => {
+  if (!isDay(day) || !Number.isSafeInteger(n)) {
+    throw new TypeError('day must be a valid YYYY-MM-DD date and n must be a safe integer');
+  }
   const d = new Date(`${day}T12:00:00Z`);
   d.setUTCDate(d.getUTCDate() + n);
   return d.toISOString().slice(0, 10);
@@ -19,6 +28,11 @@ export const addDays = (day, n) => {
 
 // One answer. Changes the entry in place and returns it.
 export function answer(e, good, dir, day) {
+  if (!e || typeof e !== 'object' || Array.isArray(e)) throw new TypeError('entry must be an object');
+  if (typeof good !== 'boolean') throw new TypeError('good must be a boolean');
+  if (dir !== 'r' && dir !== 'w') throw new TypeError('dir must be r or w');
+  if (!isDay(day) || !isDay(e.d)) throw new TypeError('day and entry due date must be valid YYYY-MM-DD dates');
+
   e.n = (e.n || 0) + 1;
   if (good) e.k = (e.k || 0) + 1;
   if (e.d > day) return e; // before the due date: practice, the schedule stays

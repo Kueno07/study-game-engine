@@ -35,17 +35,20 @@ npm run dev   # http://127.0.0.1:8787, phrase "local-dev-phrase" in the x-app-to
 A Vercel preview deployment shares the project's environment variables. If the Redis variables are set for every
 environment, a preview writes to the production database. This repo does not rely on getting the variables right.
 
-1. The database stores a label under `<prefix>:env`.
+1. The database stores a label under `<prefix>:env`. The API routes in this repo use the `demo` prefix.
 2. Production stamps an unlabelled database `prod` on its first request, and refuses a database labelled `dev`.
 3. Every other deployment only reads, and must find `dev`. An unlabelled database is refused as well, because it
    may be production before its first request.
 4. A DEV database gets its label once, from an empty state:
-   `KV_REST_API_URL=... KV_REST_API_TOKEN=... node dev/mark-dev-db.mjs`. The script refuses a database that
+   `KV_REST_API_URL=... KV_REST_API_TOKEN=... node dev/mark-dev-db.mjs --prefix demo`. The script refuses a database that
    already holds data.
 
 Setup on Vercel: create a second Upstash database, set the Redis variables for the Preview environment only, and
 run the script above against it. Until then a preview fails with a clear message instead of touching production.
 `dev/test-store.mjs` covers these rules, including "a preview never writes to a prod database".
+
+The state endpoint accepts JSON bodies up to 1 MiB. Invalid JSON, oversized bodies and non-object state values are
+rejected with a 4xx response before game state is saved.
 
 ## Tests
 
