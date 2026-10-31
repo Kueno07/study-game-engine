@@ -1,9 +1,9 @@
 {
-  "name": "study-game-engine",
+  "name": "serverless-study-backend",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Serverless backend pieces for a personal study game: Upstash Redis store with a DEV/PROD label guard, phrase auth, spaced-review scheduler, tests and CI. No dependencies.",
+  "description": "Serverless backend pieces extracted from a personal study project: Upstash Redis store with a DEV/PROD label guard, phrase auth, spaced-review scheduler, tests and CI. No dependencies.",
   "engines": { "node": ">=20" },
   "scripts": {
     "test": "node dev/run-tests.mjs",

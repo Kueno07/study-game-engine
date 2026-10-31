@@ -1,7 +1,8 @@
-# study-game-engine
+# serverless-study-backend
 
-Backend pieces I wrote for a personal study game that runs on Vercel and Upstash Redis. They are small, have no
-dependencies, and each one has tests. This repo holds only the generic parts. The game and its content are not here.
+Generic backend pieces extracted from a private personal project (a study game on Vercel and Upstash Redis). They are
+small, have no dependencies, and each one has tests. This is a standalone extract, not the game and not its engine:
+the game, its content and its front end are not here, and this repo is not kept in sync with them.
 
 ## What is in it
 
