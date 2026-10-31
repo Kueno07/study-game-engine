@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Serverless backend pieces for a personal study game: Upstash Redis store with a DEV/PROD label guard, phrase auth, spaced-review scheduler, tests and CI. No dependencies.",
+  "description": "Generic serverless backend pieces extracted from a private study project (not the game or its engine): Upstash Redis store with a DEV/PROD label guard, phrase auth, spaced-review scheduler, tests and CI. No dependencies.",
   "engines": { "node": ">=20" },
   "scripts": {
     "test": "node dev/run-tests.mjs",
